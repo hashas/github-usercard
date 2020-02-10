@@ -3,6 +3,17 @@
            https://api.github.com/users/<your name>
 */
 
+axios.get('https://api.github.com/users/hashas')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .then(function () {
+
+  });
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -45,7 +56,43 @@ const followersArray = [];
 </div>
 
 */
+const elCreator (obj) {
 
+  // create elements
+  const elDiv = document.createElement('div');
+  const elImg = document.createElement('img');
+  const elDiv2 = document.createElement('div');
+  const elHeader = document.createElement('h3');
+  const elPara1 = document.createElement('p');
+  const elPara2 = document.createElement('p');
+  const elPara3 = document.createElement('p');
+  const pageAdd = document.createElement('a');
+  const elPara4 = document.createElement('p');
+  const elPara5 = document.createElement('p');
+  const elPara6 = document.createElement('p');
+
+  // append child elements
+  elDiv.appendChild(elImg);
+  elDiv.appendChild(elDiv2);
+  elDiv2.appendChild(elHeader);
+  elDiv2.appendChild(elPara1);
+  elDiv2.appendChild(elPara2);
+  elDiv2.appendChild(elPara3);
+  elDiv2.appendChild(elPara4);
+  elDiv2.appendChild(elPara5);
+  elDiv2.appendChild(elPara6);
+  elPara3.appendChild(pageAdd);
+
+  // add CSS style classes
+  elDiv.classList.add('card');
+  elDiv2.classList.add('card-info');
+  elHeader.classList.add('name');
+  elPara1.classList.add('username');
+
+  // add attributes
+
+
+}
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
