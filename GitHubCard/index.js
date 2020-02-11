@@ -6,6 +6,9 @@
 axios.get('https://api.github.com/users/hashas')
   .then(function (response) {
     console.log(response);
+    let user = response.data;
+    let newCard = elCreator(user);
+    cardsDiv.appendChild(newCard);
   })
   .catch(function (error) {
     console.log(error);
@@ -35,7 +38,19 @@ axios.get('https://api.github.com/users/hashas')
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+followersArray.forEach((item) => {
+  axios.get(`https://api.github.com/users/${item}`)
+    .then((response) => {
+      let userData = response.data;
+      let userCard = elCreator(userData);
+      cardsDiv.appendChild(userCard);
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}`);
+    });
+})
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -56,7 +71,10 @@ const followersArray = [];
 </div>
 
 */
-const elCreator (obj) {
+
+cardsDiv = document.querySelector('.cards');
+
+function elCreator(obj){
 
   // create elements
   const elDiv = document.createElement('div');
@@ -91,8 +109,20 @@ const elCreator (obj) {
 
   // add attributes
 
+  elImg.src = obj.avatar_url;
+  elHeader.textContent = obj.name;
+  elPara1.textContent = obj.login;
+  elPara2.textContent = `Location: ${obj.location}`;
+  elPara3.textContent = 'Profile:'; // discrepancy
+  pageAdd.href = obj.html_url;
+  pageAdd.text = obj.html_url;
+  elPara4.textContent = `Followers: ${obj.followers}`;
+  elPara5.textContent = `Following: ${obj.following}`;
+  elPara6.textContent = `Bio: ${obj.bio}`;
 
-}
+  return elDiv;
+};
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
